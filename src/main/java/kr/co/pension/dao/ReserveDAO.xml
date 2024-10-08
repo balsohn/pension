@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybats-3-mapper.dtd">
+
+<mapper namespace="kr.co.pension.dao.ReserveDAO">
+	<select id="getRooms" resultType="kr.co.pension.dto.RoomDTO">
+		select title,id from room order by price asc
+	</select>
+	<select id="getRoom" resultType="kr.co.pension.dto.RoomDTO">
+		select * from room where id=#{param1}
+	</select>
+	<select id="getNumber" resultType="int">
+		select ifnull(max(right(jumuncode,3)),0)
+		from reserve
+		where jumuncode like concat (#{param1},'%')
+	</select>
+	<insert id="reserveOk">
+		insert into reserve (inday, outday, userid, jumuncode, suk, inwon, bbq, fire, chgprice, rid, writeday)
+		values (#{inday},#{outday},#{userid},#{jumuncode},#{suk},#{inwon},#{bbq},#{fire},#{chgprice},#{rid}, now())
+	</insert>
+	<select id="reserveView" resultType="kr.co.pension.dto.ReserveDTO">
+		select * from reserve where jumuncode=#{param1}
+	</select>
+	<select id="isCheck" resultType="boolean">
+		<![CDATA[
+		select count(*) from reserve
+		where inday <= #{param1} and outday > #{param1}
+		and rid=#{param2}
+		]]>
+	</select>
+	<select id="roomView" resultType="kr.co.pension.dto.RoomDTO">
+	    <![CDATA[
+	    select * from room where room.id not in (
+	    select rid from reserve 
+	    where inday < #{param2} and outday > #{param1})
+	    ]]>
+	</select>
+
+	
+</mapper>

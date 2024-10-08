@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybats-3-mapper.dtd">
+
+<mapper namespace="kr.co.pension.dao.NoticeDAO">
+	<select id="list" resultType="kr.co.pension.dto.NoticeDTO">
+		select * from notice
+		order by state desc, id desc
+	</select>
+	<insert id="writeOk">
+		insert into notice
+		(title,content,state,writeday)
+		values (#{title},#{content},#{state},now())
+	</insert>
+	<update id="readnum">
+		update notice set readnum=readnum+1 where id=#{param1}
+	</update>
+	<select id="content" resultType="kr.co.pension.dto.NoticeDTO">
+		select * from notice where id=#{param1} 
+	</select>
+	<delete id="delete">
+		delete from notice where id=#{param1}
+	</delete>
+	<update id="updateOk">
+		update notice
+		set title=#{title}, content=#{content}, state=#{state}
+		where id=#{id}
+	</update>
+</mapper>

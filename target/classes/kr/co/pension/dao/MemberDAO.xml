@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybats-3-mapper.dtd">
+
+<mapper namespace="kr.co.pension.dao.MemberDAO">
+	<select id="useridChk" resultType="String">
+		select count(*) from member
+		where userid=#{param1}
+	</select>
+	<insert id="memberOk">
+		insert into member (userid, name, pwd, email, phone, writeday)
+		values (#{userid}, #{name}, #{pwd}, #{email}, #{phone}, now())
+	</insert>
+	<select id="loginOk" resultType="int">
+		select count(*) from member where
+		userid=#{userid} and pwd=#{pwd}
+	</select>
+	<select id="usSearch" resultType="string">
+		select userid from member where name=#{name} and email=#{email}
+	</select>
+	<select id="pwdSearch" resultType="int">
+		select count(*) from member where userid=#{userid} and name=#{name} and email=#{email}
+	</select>
+	<update id="pwdchg">
+		update member set pwd=#{pwd} where userid=#{userid} and email=#{email} and name=#{name}
+	</update>
+	<select id="memberView" resultType="kr.co.pension.dto.MemberDTO">
+		select * from member
+		where userid=#{param1}
+	</select>
+	<update id="emailEdit">
+		update member set email=#{param1}
+		where userid=#{param2}
+	</update>
+	<update id="phoneEdit">
+		update member set phone=#{param1}
+		where userid=#{param2}
+	</update>
+	<select id="pwdchk" resultType="kr.co.pension.dto.MemberDTO">
+		select * from member where userid=#{param1}
+	</select>
+	<select id="getInquirys" resultType="kr.co.pension.dto.InquiryDTO">
+		select * from inquiry
+		where userid=#{param1}
+		order by id desc
+	</select>
+		<select id="reserveList" resultType="kr.co.pension.dto.ReserveDTO"> 
+		select * from reserve where userid=#{param}
+	</select>
+</mapper>
