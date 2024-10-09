@@ -24,4 +24,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delete">
 		delete from board where id=#{param1} and userid=#{param2}
 	</delete>
+	<select id="notice" resultType="kr.co.pension.dto.NoticeDTO">
+		select * from notice order by id desc limit 20
+	</select>
+	<select id="tour" resultType="kr.co.pension.dto.TourDTO">
+		select * from tour order by id desc limit 20
+	</select>
 </mapper>

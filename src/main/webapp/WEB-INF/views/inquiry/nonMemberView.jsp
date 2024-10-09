@@ -15,7 +15,9 @@
 	<section>
 	<table width="800" align="center">
 		<tr>
-			<td rowspan="2" width="140" align="center">${idto.title2}</td>
+			<td rowspan="2" width="140" align="center">${idto.title2}
+				<div style="font-size: 10px;">문의번호 : ${idto.inqNumber}</div>
+			</td>
 			<td height="100" style="padding:5px 10px;">${idto.content }</td>
 			<td rowspan="2" width="140" align="center">${idto.writeday }</td>
 		</tr>

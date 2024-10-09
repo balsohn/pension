@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -41,6 +42,7 @@ public class TourController {
 	
 	@RequestMapping("/tour/writeOk")
 	public String writeOk(HttpSession session,HttpServletRequest request) throws Exception {
+		
 		String path=request.getRealPath("/resources/tour");
 		int size=1024*1024*30;
 		MultipartRequest multi=new MultipartRequest(request, path, size, "utf-8", new DefaultFileRenamePolicy());

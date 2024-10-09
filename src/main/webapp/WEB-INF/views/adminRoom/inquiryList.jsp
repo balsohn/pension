@@ -8,7 +8,8 @@
 <title>Insert title here</title>
 <style>
 	section {margin: auto; width:1000px;}
-	section table {border:1px solid black; margin: auto; margin:10px auto;}
+	section table {border:1px solid black; margin: auto; margin:10px auto;
+					border-spacing: 0;}
 	section td, section tr{border:1px solid black;}
 	section textarea {
       width:100%;
@@ -25,7 +26,9 @@
 		<input type="hidden" name="id" value="${idto.id}">
 		<table width="800" align="center">
 			<tr>
-				<td rowspan="2" width="140" align="center">${idto.title2}</td>
+				<td rowspan="2" width="140" align="center">${idto.title2}
+					<div>[${idto.userid}]</div>
+				</td>
 				<td height="100" style="padding:5px 10px;">${idto.content }</td>
 				<td rowspan="2" width="140" align="center">
 					${idto.writeday }<p>

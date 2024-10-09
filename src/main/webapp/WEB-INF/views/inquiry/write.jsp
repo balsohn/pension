@@ -7,14 +7,53 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	section .inquiry-container {width:50%; margin:auto; border:1px solid black;}
-	section h2 {margin-left: 30px;}
-	section .inquiry-container form > div {text-align:center;}
-	section select {width:90%; height: 30px; }
-	section textarea {width: 90%; height: 200px;}
-	section input {width: 70%; height:30px; text-align: center;}
-	section .non {width :300px; margin:auto;}
-	
+		section {
+			width: 700px;
+			margin: auto;
+		}   
+		
+		span {
+			width:80px;
+			display: inline-block;
+		}
+		
+		.write-container div {
+			margin-top: 10px;
+		}
+		
+		.write-container input[type="text"] {
+			height: 30px;
+			width: 100%;
+		}
+		
+		textarea {
+			width: 100%;
+			height: 300px;
+			resize: vertical;
+		}
+		
+		.btn {
+			text-align: center;
+		}
+		.write-container input[type="submit"] {
+			text-align: center;
+			width: 100px;
+			height: 30px;
+			border: none;
+			border-radius: 5px;
+			background: black;
+			color: white;
+			margin-top:10px;
+		}
+		
+		.write-container input[type="submit"]:hover {
+			background: #ccc;
+		}
+		
+		.write-container select {
+			height: 30px;
+			width: 100px;
+		}
 </style>
 </head>
 <body>
@@ -28,10 +67,10 @@
 		</form>
 		</c:if>
 		</div>
-		<div class="inquiry-container">
+		<div class="write-container">
 		<form method="post" action="writeOk">
-		<h2> 문의하기 </h2>
-			<div> 
+		<h2> 문의하기 
+			<span> 
 				<select name="title">
 					<option value="0"> 펜션 예약 </option>
 					<option value="1"> 입실 퇴실 </option>
@@ -39,9 +78,9 @@
 					<option value="3"> 웹 사이트 </option>
 					<option value="4"> 기타 </option>
 				</select>
-			</div>	
+			</span>	</h2>
 			<div> <textarea name="content"></textarea></div>
-			<div> <input type="submit" value="문의하기"></div>		
+			<div class="btn"> <input type="submit" value="문의하기"></div>		
 		</form>
 		</div>
 	</section>

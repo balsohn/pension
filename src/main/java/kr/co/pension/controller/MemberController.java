@@ -17,11 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.util.WebUtils;
 
+import kr.co.pension.dao.BoardDAO;
 import kr.co.pension.dao.MemberDAO;
 import kr.co.pension.dao.ReserveDAO;
+import kr.co.pension.dto.BoardDTO;
 import kr.co.pension.dto.InquiryDTO;
 import kr.co.pension.dto.MemberDTO;
 import kr.co.pension.dto.ReserveDTO;
+import kr.co.pension.dto.TourDTO;
 import kr.co.pension.util.MailSend;
 import kr.co.pension.util.Utils;
 
@@ -38,7 +41,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/main/index")
-	public String index() {
+	public String index(Model model) {
+		BoardDAO board=sql.getMapper(BoardDAO.class);
+		model.addAttribute("notice",board.notice());
+		model.addAttribute("board",board.list());
+		model.addAttribute("tour",board.tour());
 		return "/main/index";
 	}
 	
@@ -352,10 +359,26 @@ public class MemberController {
 
 			model.addAttribute("inqlist",inquirys);
 			
+			ArrayList<BoardDTO> bdto=mdao.myBoard(userid);
+			model.addAttribute("blist",bdto);
+			
+			ArrayList<TourDTO> tdto=mdao.myTour(userid);
+			model.addAttribute("tlist",tdto);
+			
 			return "/member/myWrite";
 		}
 	}
 	
+	@RequestMapping("/member/cancelRe")
+	public String cancelRe(HttpServletRequest request) {
+		String id=request.getParameter("id");
+		String state=request.getParameter("state");
+		
+		MemberDAO mdao=sql.getMapper(MemberDAO.class);
+		mdao.cancelRe(id,state);
+		
+		return "redirect:/member/reserveList";
+	}
 	
 	
 }

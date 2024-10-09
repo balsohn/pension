@@ -9,9 +9,46 @@
 <title>예약 달력</title>
 <style>
 	section {width:800px; margin:auto;}
-	table {width:100%;}
+	table {
+		margin:auto;
+		width:700px;
+		height: 300px;
+	}
 	th, td {width: 14%; text-align: center;}
 	td:hover {background:#ccc;}
+	#dateForm {
+		text-align: center;
+		margin-top: 30px;
+	}
+	
+	#dateForm #inday,#outday {
+		width: 150px;
+		height: 30px;
+		margin-bottom:10px;
+		text-align: center;
+	}
+	
+	input[type="submit"],input[type="button"] {
+		border:none;
+		width: 80px;
+		height: 30px;
+		background: #ccc;
+	}
+	
+	input[type="submit"]:hover,input[type="button"]:hover {
+		background: black;
+		color: white;
+		cursor: pointer;
+	}
+	
+	a {
+		text-decoration: none;
+		color: black;
+	}
+	
+	td {
+		cursor: pointer;
+	}
 </style>
 <script>
 
@@ -73,7 +110,7 @@ function chk() {
 			<td colspan="5" style="text-align: center;">
 				<h2>${year}년 ${month}월</h2>
 			</td>
-			<td style="text-align: right;">
+			<td>
 				<c:choose>
 			        <c:when test="${month >= 12}">
 			            <a href="reserve?year=${year+1}&month=1&inday=${param.inday}">다음달</a>
@@ -106,11 +143,13 @@ function chk() {
 			</c:forEach>
 		</tr>
 	</table>
-	<form method="post" action="roomView" onsubmit="return chk()">
-	<input type="text" id="inday" name="inday" value="${param.inday}" readonly>
-	<input type="text" id="outday" name="outday" value="${param.outday}" readonly>
-	<input type="submit" value="예약하기"> 
-	<button type="button" onclick="resetDate()"> 날짜 초기화 </button>
+	<form method="post" id="dateForm" action="roomView" onsubmit="return chk()">
+		<div>입실&nbsp;&nbsp;<input type="text" id="inday" name="inday" value="${param.inday}" readonly></div>
+		<div>퇴실&nbsp;&nbsp;<input type="text" id="outday" name="outday" value="${param.outday}" readonly></div>
+		<div>
+			<input type="submit" id="submit" value="예약하기"> 
+			<input type="button" onclick="resetDate()" value="날짜 초기화">
+		</div>
 	</form>
 	</section>
 </body>

@@ -47,15 +47,15 @@ public class InquiryController {
 			System.out.println(inqNumber);
 			idao.writeOk(idto);
 			
-			
+			return "redirect:/inquiry/nonMemberView?inqNumber="+inqNumber;
 		} else {
 			
 			userid=useridchk.toString();
 			idto.setUserid(userid);
 			idao.writeOk(idto);
+			return "redirect:/member/myWrite";
 		}
 		
-		return "/inquiry/writeOk";
 	}
 	
 	@RequestMapping("/inquiry/nonMemberView")

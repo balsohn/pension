@@ -76,7 +76,9 @@
             <div class="column-last">${tlist.writeday}</div>
         </div>
         </c:forEach>
+        <c:if test="${!empty userid}">
         <div class="btn"><a href="write">후기 등록</a></div>
+        </c:if>
     </section>
 </body>
 </html>

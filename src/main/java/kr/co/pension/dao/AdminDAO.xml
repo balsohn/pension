@@ -18,5 +18,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update inquiry set answer=#{answer},state=1
 		where id=#{id}
 	</update>
-	
+	<select id="reserve" resultType="kr.co.pension.dto.ReserveDTO">
+		select * from reserve order by inday asc
+	</select>
+	<update id="cancelRe">
+		update reserve set state=#{param2}
+		where id=#{param1}
+	</update>
 </mapper>

@@ -48,4 +48,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<select id="reserveList" resultType="kr.co.pension.dto.ReserveDTO"> 
 		select * from reserve where userid=#{param}
 	</select>
+	<update id="cancelRe">
+		update reserve set state=#{param2}
+		where id=#{param1}
+	</update>
+	<select id="myBoard" resultType="kr.co.pension.dto.BoardDTO">
+		select * from board where userid=#{param1} order by id desc
+	</select>
+	<select id="myTour" resultType="kr.co.pension.dto.TourDTO">
+		select * from tour where userid=#{param1} order by id desc
+	</select>
 </mapper>

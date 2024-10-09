@@ -21,6 +21,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import kr.co.pension.dao.AdminDAO;
 import kr.co.pension.dao.RoomDAO;
 import kr.co.pension.dto.InquiryDTO;
+import kr.co.pension.dto.ReserveDTO;
 import kr.co.pension.dto.RoomDTO;
 import kr.co.pension.util.Utils;
 
@@ -306,5 +307,25 @@ public class AdminController {
 		adao.inquiryOk(idto);
 		
 		return "redirect:/adminRoom/inquiryList";
+	}
+	
+	@RequestMapping("/adminRoom/reserveList")
+	public String reserveList(Model model) {
+		AdminDAO adao=sql.getMapper(AdminDAO.class);
+		ArrayList<ReserveDTO> reserve=adao.reserve();
+		
+		model.addAttribute("rlist",reserve);
+		
+		return "/adminRoom/reserveList";
+	}
+	
+	@RequestMapping("/adminRoom/cancelRe")
+	public String cancelRe(HttpServletRequest request) {
+		String id=request.getParameter("id");
+		String state=request.getParameter("state");
+		AdminDAO adao=sql.getMapper(AdminDAO.class);
+		adao.cancelRe(id,state);
+		
+		return "redirect:/adminRoom/reserveList";
 	}
 }

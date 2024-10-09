@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 	<style>
-		
 		section { width: 1000px; height: 600px; margin:auto;text-align: center;padding-bottom: 40px;}
 		section form { width:65%; margin: auto; position: relative;border-radius: 10px; padding:20px;}
 		section h2 {margin:20px;}
@@ -26,9 +25,9 @@
 		<div> <input type="text" name="title" placeholder="제 목"> </div>
 		<div> <textarea name="content" placeholder="공지사항 내용"></textarea></div>
 		<div>
-			<input type="radio" name="state" value="0"> 일반공지
-			<input type="radio" name="state" value="1"> 상시공지
-			<input type="radio" name="state" value="2"> 필수공지
+			<label><input type="radio" name="state" value="0"> 일반공지</label>
+			<label><input type="radio" name="state" value="1"> 상시공지</label>
+			<label><input type="radio" name="state" value="2"> 필수공지</label>
 		</div>
 		<div> <input type="submit" value="공지사항 글쓰기" id="sub"> </div>
 		</form>

@@ -305,7 +305,7 @@
             <c:if test="${!empty userid}">
             	<c:if test="${userid=='admin'}">
             	<a href="../adminRoom/list">객실관리</a>
-            	<a href="">예약관리</a>
+            	<a href="../adminRoom/reserveList">예약관리</a>
             	<a href="../adminRoom/inquiryList">문의관리</a>
             	</c:if>
             	<div class="dropdown">
